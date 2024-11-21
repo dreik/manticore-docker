@@ -318,6 +318,7 @@ There are several methods to build plain tables from your custom configuration f
    
 ### Microsoft SQL Server ODBC
 Microsoft SQL ODBC DSN Driver name `ODBC Driver 18 for SQL Server`
+
 Example connection string:
 ```
 odbc_dsn = Driver={ODBC Driver 18 for SQL Server};Server=192.168.0.1,1433;UID=username;PWD=password;Database=database
