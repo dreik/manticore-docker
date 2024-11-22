@@ -51,7 +51,7 @@ RUN set -x \
     && chmod +x /usr/bin/manticore-executor \
     && apt-get -y update && apt-get -y install --no-install-recommends curl ca-certificates binutils wget gnupg xz-utils dirmngr locales tzdata cron \
     && curl https://packages.microsoft.com/keys/microsoft.asc | tee /etc/apt/trusted.gpg.d/microsoft.asc \
-    && echo "deb [arch=amd64] https://packages.microsoft.com/ubuntu/22.04/prod jammy main" > /etc/apt/sources.list.d/mssql-release.list \
+    && echo "deb [arch=amd64,arm64,armhf] https://packages.microsoft.com/ubuntu/22.04/prod jammy main" > /etc/apt/sources.list.d/mssql-release.list \
     && apt-get -y update && ACCEPT_EULA=Y apt-get install -y msodbcsql18 \
 	&& rm -rf /var/lib/apt/lists/* \
     && locale-gen --lang en_US \
