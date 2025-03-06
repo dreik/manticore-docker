@@ -1,6 +1,6 @@
 ––– block: ./base/init –––
 ––– input –––
-docker run --rm -e EXTRA=1 --name manticore -v /tmp/idx:/var/lib/manticore -d manticoresoftware/manticore:current
+docker run --rm --name manticore -v /tmp/idx:/var/lib/manticore -d manticoresoftware/manticore:current
 ––– output –––
 #!/[0-9a-z]{40}$/!#
 ––– input –––
@@ -23,7 +23,7 @@ docker exec manticore bash -c "mysql < ./tables.sql"
 docker exec manticore mysql -e "show tables"
 ––– output –––
 +---------------------+-------------+
-| Index               | Type        |
+| Table               | Type        |
 +---------------------+-------------+
 | distributed_index   | distributed |
 | rt_with_columnar    | rt          |
@@ -98,7 +98,7 @@ manticore: %{SEMVER} %{COMMITDATE} dev
 columnar: %{SEMVER} %{COMMITDATE}
 secondary: %{SEMVER} %{COMMITDATE}
 knn: %{SEMVER} %{COMMITDATE}
-buddy: %{SEMVER}
+buddy: %{SEMVER_EXT}
 [93m%{DATETIME}[0m [Info] Starting the backup...
 [93m%{DATETIME}[0m [Info] Backing up config files...
 [93m%{DATETIME}[0m [Info]   config files - [92mOK[0m
@@ -141,7 +141,7 @@ if timeout 60 sh -c 'while docker ps -a | grep -qE "Up"; do sleep 1; done'; then
 ––– output –––
 successful
 ––– input –––
-docker run -d -e EXTRA=1 --name manticore -v /tmp/$BACKUP_NAME:/docker-entrypoint-initdb.d manticoresoftware/manticore:current
+docker run -d --name manticore -v /tmp/$BACKUP_NAME:/docker-entrypoint-initdb.d manticoresoftware/manticore:current
 ––– output –––
 #!/[0-9a-z]{40}$/!#
 ––– input –––
@@ -152,7 +152,7 @@ Manticore is running
 docker exec manticore mysql -e "show tables"
 ––– output –––
 +---------------------+-------------+
-| Index               | Type        |
+| Table               | Type        |
 +---------------------+-------------+
 | distributed_index   | distributed |
 | rt_with_columnar    | rt          |
